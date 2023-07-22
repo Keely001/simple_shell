@@ -1,4 +1,4 @@
-#include "main.h
+#include "main.h"
 
 /**
  * char_repeat - counts the repetitions of a char
