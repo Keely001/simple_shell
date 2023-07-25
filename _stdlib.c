@@ -1,100 +1,89 @@
 #include "main.h"
 
 /**
- * get_len - Get the lenght of a number.
- * @n: type int number.
- * Return: Lenght of a number.
+ * get_len - gets length of int
+ * @n: the integer
+ * Return: The length
  */
 int get_len(int n)
 {
-	unsigned int n1;
-	int lenght = 1;
+	unsigned int num;
+	int length = 1;
 
 	if (n < 0)
 	{
-		lenght++;
-		n1 = n * -1;
+		length++;
+		num = n * -1;
 	}
 	else
+		num = n;
+	while (num > 9)
 	{
-		n1 = n;
+		length++;
+		num = num / 10;
 	}
-	while (n1 > 9)
-	{
-		lenght++;
-		n1 = n1 / 10;
-	}
-
-	return (lenght);
+	return (length);
 }
 /**
- * aux_itoa - function converts int to string.
- * @n: type int number
- * Return: String.
+ * aux_itoa - to int to string.
+ * @n: the integer
+ * Return: the string
  */
 char *aux_itoa(int n)
 {
-	unsigned int n1;
-	int lenght = get_len(n);
-	char *buffer;
+	unsigned int num;
+	int length = get_len(n);
+	char *buff;
 
-	buffer = malloc(sizeof(char) * (lenght + 1));
-	if (buffer == 0)
+	buff = malloc(sizeof(char) * (length + 1));
+	if (buff == 0)
 		return (NULL);
-
-	*(buffer + lenght) = '\0';
-
+	*(buff + length) = '\0';
 	if (n < 0)
 	{
-		n1 = n * -1;
-		buffer[0] = '-';
+		num = n * -1;
+		buff[0] = '-';
 	}
 	else
-	{
-		n1 = n;
-	}
-
-	lenght--;
+		num = n;
+	length--;
 	do {
-		*(buffer + lenght) = (n1 % 10) + '0';
-		n1 = n1 / 10;
-		lenght--;
+		*(buff + length) = (num % 10) + '0';
+		num = num / 10;
+		length--;
 	}
-	while (n1 > 0)
+	while (num > 0)
 		;
-	return (buffer);
+	return (buff);
 }
-
 /**
- * _atoi - converts a string to an integer.
- * @s: input string.
- * Return: integer.
+ * _atoi - string to integer.
+ * @s: string.
+ * Return: integer
  */
 int _atoi(char *s)
 {
-	unsigned int count = 0, size = 0, oi = 0, pn = 1, m = 1, i;
+	unsigned int counter = 0, size = 0;
+	int final = 0, sign = 1, power = 1, i;
 
-	while (*(s + count) != '\0')
+	while (*(s + counter) != '\0')
 	{
-		if (size > 0 && (*(s + count) < '0' || *(s + count) > '9'))
+		if (size > 0 && (*(s + counter) < '0' || *(s + counter) > '9'))
 			break;
-
-		if (*(s + count) == '-')
-			pn *= -1;
-
-		if ((*(s + count) >= '0') && (*(s + count) <= '9'))
+		if (*(s + counter) == '-')
+			sign *= -1;
+		if ((*(s + counter) >= '0') && (*(s + counter) <= '9'))
 		{
 			if (size > 0)
-				m *= 10;
+				power *= 10;
 			size++;
 		}
-		count++;
+		counter++;
 	}
-
-	for (i = count - size; i < count; i++)
+	for (i = counter - size; i < counter; i++)
 	{
-		oi = oi + ((*(s + i) - 48) * m);
-		m /= 10;
+		final = final + ((*(s + i) - 48) * power);
+		power /= 10;
 	}
-	return (oi * pn);
+	return (final * sign);
 }

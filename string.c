@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * _strcat - concatenate two strings
- * @dest: char pointer the dest of the copied str
- * @src: const char pointer the source of str
- * Return: the dest
+ * _strcat - concatenates strings
+ * @dest: fst string
+ * @src: scd string
+ * Return: the two stringd
  */
 char *_strcat(char *dest, const char *src)
 {
@@ -13,40 +13,35 @@ char *_strcat(char *dest, const char *src)
 
 	for (i = 0; dest[i] != '\0'; i++)
 		;
-
 	for (j = 0; src[j] != '\0'; j++)
 	{
 		dest[i] = src[j];
 		i++;
 	}
-
 	dest[i] = '\0';
 	return (dest);
 }
 /**
- * *_strcpy - Copies the string pointed to by src.
- * @dest: Type char pointer the dest of the copied str
- * @src: Type char pointer the source of str
- * Return: the dest.
+ * *_strcpy - copies string
+ * @dest: fst string
+ * @src: scd string
+ * Return: the destination
  */
 char *_strcpy(char *dest, char *src)
 {
 
-	size_t a;
+	size_t i;
 
-	for (a = 0; src[a] != '\0'; a++)
-	{
-		dest[a] = src[a];
-	}
-	dest[a] = '\0';
-
+	for (i = 0; src[i] != '\0'; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
 	return (dest);
 }
 /**
- * _strcmp - Function that compares two strings.
- * @s1: type str compared
- * @s2: type str compared
- * Return: Always 0.
+ * _strcmp - compares two strings.
+ * @s1: fst string
+ * @s2: scd string
+ * Return: 0, 1 or -1
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -54,7 +49,6 @@ int _strcmp(char *s1, char *s2)
 
 	for (i = 0; s1[i] == s2[i] && s1[i]; i++)
 		;
-
 	if (s1[i] > s2[i])
 		return (1);
 	if (s1[i] < s2[i])
@@ -62,10 +56,10 @@ int _strcmp(char *s1, char *s2)
 	return (0);
 }
 /**
- * _strchr - locates a character in a string,
- * @s: string.
- * @c: character.
- * Return: the pointer to the first occurrence of the character c.
+ * _strchr - searches for a char
+ * @s: string
+ * @c: the  character
+ * Return: occcurence of char
  */
 char *_strchr(char *s, char c)
 {
@@ -79,10 +73,10 @@ char *_strchr(char *s, char c)
 	return ('\0');
 }
 /**
- * _strspn - gets the length of a prefix substring.
- * @s: initial segment.
- * @accept: accepted bytes.
- * Return: the number of accepted bytes.
+ * _strspn - length of substring.
+ * @s: init segment.
+ * @accept: allowed bytes.
+ * Return: number of allowed bytes.
  */
 int _strspn(char *s, char *accept)
 {
@@ -102,5 +96,6 @@ int _strspn(char *s, char *accept)
 		if (bool == 1)
 			break;
 	}
+
 	return (i);
 }

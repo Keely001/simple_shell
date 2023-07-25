@@ -1,44 +1,40 @@
 #include "main.h"
-
 /**
- * _strdup - duplicates a str in the heap memory.
- * @s: Type char pointer str
- * Return: duplicated str
+ * _strdup - func to deplicate string
+ * @s: Char pointer of the string.
+ * Return: new String pointer.
  */
 char *_strdup(const char *s)
 {
-	char *new;
-	size_t len;
+	char *n;
+	size_t length;
 
-	len = _strlen(s);
-	new = malloc(sizeof(char) * (len + 1));
-	if (new == NULL)
+	length = _strlen(s);
+	n = malloc(sizeof(char) * (length + 1));
+	if (n == NULL)
 		return (NULL);
-	_memcpy(new, s, len + 1);
-	return (new);
+	_memcpy(n, s, length + 1);
+	return (n);
 }
-
 /**
- * _strlen - Returns the lenght of a string.
- * @s: Type char pointer
- * Return: Always 0.
+ * _strlen - string length
+ * @s: string pointer
+ * Return: length
  */
 int _strlen(const char *s)
 {
-	int len;
+	int length;
 
-	for (len = 0; s[len] != 0; len++)
+	for (length = 0; s[length] != 0; length++)
 	{
 	}
-	return (len);
+	return (length);
 }
-
 /**
- * cmp_chars - compare chars of strings
- * @str: input string.
- * @delim: delimiter.
- *
- * Return: 1 if are equals, 0 if not.
+ * cmp_chars - compares two strings
+ * @str: the string
+ * @delim: the delimiters
+ * Return: 1 or 0
  */
 int cmp_chars(char str[], const char *delim)
 {
@@ -61,60 +57,54 @@ int cmp_chars(char str[], const char *delim)
 }
 
 /**
- * _strtok - splits a string by some delimiter.
- * @str: input string.
- * @delim: delimiter.
- *
- * Return: string splited.
+ * _strtok - splits the string by the delimiter
+ * @str: the string.
+ * @delim: the delimiter.
+ * Return: splitted string
  */
 char *_strtok(char str[], const char *delim)
 {
 	static char *splitted, *str_end;
-	char *str_start;
+	char *str_begin;
 	unsigned int i, bool;
 
 	if (str != NULL)
 	{
 		if (cmp_chars(str, delim))
 			return (NULL);
-		splitted = str; /*Store first address*/
+		splitted = str;
 		i = _strlen(str);
-		str_end = &str[i]; /*Store last address*/
+		str_end = &str[i];
 	}
-	str_start = splitted;
-	if (str_start == str_end) /*Reaching the end*/
+	str_begin = splitted;
+	if (str_begin == str_end)
 		return (NULL);
-
 	for (bool = 0; *splitted; splitted++)
 	{
-		/*Breaking loop finding the next token*/
-		if (splitted != str_start)
+		if (splitted != str_begin)
 			if (*splitted && *(splitted - 1) == '\0')
 				break;
-		/*Replacing delimiter for null char*/
 		for (i = 0; delim[i]; i++)
 		{
 			if (*splitted == delim[i])
 			{
 				*splitted = '\0';
-				if (splitted == str_start)
-					str_start++;
+				if (splitted == str_begin)
+					str_begin++;
 				break;
 			}
 		}
-		if (bool == 0 && *splitted) /*Str != Delim*/
+		if (bool == 0 && *splitted)
 			bool = 1;
 	}
-	if (bool == 0) /*Str == Delim*/
+	if (bool == 0)
 		return (NULL);
-	return (str_start);
+	return (str_begin);
 }
-
 /**
- * _isdigit - defines if string passed is a number
- *
- * @s: input string
- * Return: 1 if string is a number. 0 in other case.
+ * _isdigit - checks for numbers
+ * @s: string
+ * Return: 1 or 0
  */
 int _isdigit(const char *s)
 {
