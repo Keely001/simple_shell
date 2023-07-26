@@ -64,7 +64,8 @@ char *aux_itoa(int n)
 int _atoi(char *s)
 {
 	unsigned int counter = 0, size = 0;
-	int final = 0, sign = 1, power = 1, i;
+	int final = 0, sign = 1, power = 1;
+	unsigned int i;
 
 	while (*(s + counter) != '\0')
 	{
